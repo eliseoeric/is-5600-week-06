@@ -22,6 +22,7 @@ const Card = ({description, alt_description, id, user, urls, likes}) => {
       </Link>
     </div>
   )
+  
 }
 
 export default Card;

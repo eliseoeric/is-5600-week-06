@@ -9,10 +9,10 @@ function App() {
       <Header />
       <CardList data={productData} />
       
-      {/* <Routes>
+      <Routes>
           <Route path="/" element={<CardList data={productData} />} />
           <Route path="/product/:id" element={<SingleView data={productData} />} />
-        </Routes> */}
+        </Routes>
     
     </div>
   );
