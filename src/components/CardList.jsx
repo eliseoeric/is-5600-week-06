@@ -12,12 +12,8 @@ const CardList = ({ data }) => {
 
   // Filter products based on the search term (tags)
   const filterTags = (term) => {
-    const filteredProducts = data.filter((product) =>
-      product.tags.some((tag) => tag.toLowerCase().includes(term.toLowerCase()))
-    );
     setSearchTerm(term); // Update the search term
     setOffset(0); // Reset pagination to the first page when search term changes
-    setProducts(filteredProducts.slice(0, limit)); // Set filtered products based on search
   };
 
   // Handle the 'Previous' button click for pagination
@@ -29,29 +25,23 @@ const CardList = ({ data }) => {
 
   // Handle the 'Next' button click for pagination
   const handleNext = () => {
-    if (offset + limit < products.length) {
+    if (offset + limit < filteredProducts.length) {
       setOffset(offset + limit);
     }
   };
 
+  // Calculate filtered products outside of useEffect to avoid dependency issues
+  const filteredProducts = data.filter((product) => {
+    return product.tags.some((tag) =>
+      tag.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
+
   // Update displayed products based on changes to offset, data, or searchTerm
   useEffect(() => {
-    // If searchTerm exists, apply the filtering
-    if (searchTerm) {
-      setProducts(
-        data
-          .filter((product) =>
-            product.tags.some((tag) =>
-              tag.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-          )
-          .slice(offset, offset + limit)
-      );
-    } else {
-      // If no search term, show all products
-      setProducts(data.slice(offset, offset + limit));
-    }
-  }, [offset, data, searchTerm]); // Re-run effect when offset, data, or searchTerm changes
+    const currentProducts = searchTerm ? filteredProducts : data; // Use filtered products if search term exists, otherwise show all products
+    setProducts(currentProducts.slice(offset, offset + limit)); // Set products based on offset and limit
+  }, [offset, searchTerm, data]); // Re-run effect when offset, searchTerm, or data changes
 
   return (
     <div className="cf pa2">
@@ -69,12 +59,12 @@ const CardList = ({ data }) => {
       <div className="flex items-center justify-center pa4">
         {/* Previous Button */}
         <Button text="Previous" handleClick={handlePrevious} />
-        
+
         {/* Next Button */}
         <Button
           text="Next"
           handleClick={handleNext}
-          disabled={offset + limit >= products.length} // Disable Next if there are no more products
+          disabled={offset + limit >= filteredProducts.length} // Disable Next if there are no more filtered products
         />
       </div>
     </div>
