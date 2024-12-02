@@ -1,0 +1,36 @@
+
+[
+    {
+      "id": 1,
+      "name": "Product 1",
+      "description": "Description for product 1",
+      "price": 29.99,
+      "image": "image1.jpg",
+      "tags": ["electronics", "new"]
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "description": "Description for product 2",
+      "price": 49.99,
+      "image": "image2.jpg",
+      "tags": ["home", "sale"]
+    },
+    {
+      "id": 3,
+      "name": "Product 3",
+      "description": "Description for product 3",
+      "price": 19.99,
+      "image": "image3.jpg",
+      "tags": ["electronics", "best seller"]
+    },
+    {
+      "id": 4,
+      "name": "Product 4",
+      "description": "Description for product 4",
+      "price": 99.99,
+      "image": "image4.jpg",
+      "tags": ["clothing", "new"]
+    }
+  ]
+  
