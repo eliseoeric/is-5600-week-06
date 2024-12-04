@@ -289,7 +289,7 @@ And that’s it! You’ve now completed your first lab assignment using GitHub a
 2. Run the following commands to install dependencies and start the development server:
     ```sh
     npm install
-    npm run dev
+    npm run start
     ```
 3. You can now view the project in the browser by clicking the "Application" port in the Ports panel.
 
