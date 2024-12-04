@@ -9,7 +9,7 @@ const CardList = ({data}) => {
   const defaultDataset = data.slice(0, limit);
   const [offset, setOffset] = useState(0);
   const [products, setProducts] = useState(defaultDataset);
-  const [tagQuery, setTagQuery] = useState(""); // Store the tag query state
+  const [tagQuery, setTagQuery] = useState(""); 
 
   const handlePageChange = (direction) => {
     const newOffset = offset + direction * limit;
@@ -22,7 +22,7 @@ const CardList = ({data}) => {
 
 
   const filterTags = (tagQuery) => {
-    setTagQuery(tagQuery); // Update the tag query state
+    setTagQuery(tagQuery); 
     const filtered = data.filter((product) => {
       if (!tagQuery) {
         return product;
@@ -30,8 +30,8 @@ const CardList = ({data}) => {
       return product.tags.find(({ title }) => title === tagQuery);
     });
 
-    setOffset(0); // Reset pagination
-    setProducts(filtered.slice(0, limit)); // Update displayed products
+    setOffset(0); 
+    setProducts(filtered.slice(0, limit)); 
   };
 
   
