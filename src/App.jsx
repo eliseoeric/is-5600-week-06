@@ -1,21 +1,19 @@
 import productData from './data/full-products';
-import React from "react";
-import Header from "./components/Header";
-import CardList from "./components/CardList";
+import { Route, Routes} from 'react-router-dom';
+import Header from './components/Header';
+import CardList from './components/CardList';
+import SingleView from './components/SingleView';
 
 function App() {
   return (
     <div className="App">
       <h1>Hello There.</h1>
       <Header />
-      <CardList data={productData} />
-      {/* Uncomment if routes are added */}
-      {/* <Routes>
-          <Route path="/" element={<CardList data={productData} />} />
-          <Route path="/product/:id" element={<SingleView data={productData} />} />
-        </Routes> */}
+      <Routes>
+      <Route path="/" element={<CardList data={productData} />} />
+      <Route path="/product/:id" element={<SingleView data={productData} />} />
+      </Routes>
     </div>
   );
 }
-
 export default App;
