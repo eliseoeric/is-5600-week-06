@@ -214,8 +214,7 @@ Great job! If you open the application in your browser window now, you should be
 
 1. Add the ability to filter by tags. A `Search` component already exists. This component is configured to receive a `handleSearch` prop. This prop will be registered to the `onChange` event handler of the component. This means that when the user types in the search input, the `handleSearch` function will be called. The `handleSearch` function will receive the value of the input as an argument. You can use this value to filter the products by tags. You will need to complete the following:
    a. Import the `Search` component into the `CardList` component and place it above the cards themselves.
-   b. Create a `filterTags` function in the `CardList`. This function should receive a string and filter the `data` prop by tags. Remember how we did this in Lab 4. We had to use the `filter` method and on each product we had to check if the `tags` array included the search term. You can use the same logic here.
-   c. After you've filtered the products in the `filterTags`, you'll need to update the `offset` and the `products` state variables. The `useEffect` hook will listen to the change and re-render the component with the new products.
+0   c. After you've filtered the products in the `filterTags`, you'll need to update the `offset` and the `products` state variables. The `useEffect` hook will listen to the change and re-render the component with the new products.
    d. Lastly, pass the `filterTags` function to your `Search` component as the `handleSearch` prop.
 
 2. Optimize the pagination functionality:
