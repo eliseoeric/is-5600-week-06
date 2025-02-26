@@ -1,5 +1,4 @@
 import React from 'react'
-
 export default function Search({handleSearch}) {
 
   // This is a controlled component, so we need to keep track of the search term in state
@@ -9,7 +8,6 @@ export default function Search({handleSearch}) {
   const handleChange = (e) => {
     setSearch(e.target.value)
   }
-
   // This function will be called when the user submits the form
   const handleSubmit = (e) => {
     // Prevent the default behaviour of the form, which is to refresh the page
