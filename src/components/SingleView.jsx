@@ -1,17 +1,23 @@
 import { useParams } from 'react-router-dom';
+import React from "react";
+import { useParams } from "react-router-dom";
 
 export default function SingleView({data}) {
   // get the id from the url using useParams
+const SingleView = ({ data }) => {
   const { id } = useParams();
-  
+
   // get the product from the data using the id
   const product = data.find(product => product.id === id);
+  const product = data.find((item) => item.id.toString() === id);
 
   const { user } = product;
 
   const title = product.description ?? product.alt_description;
   const style = {
     backgroundImage: `url(${product.urls["regular"]})`
+  if (!product) {
+    return <div>Product not found!</div>;
   }
 
   return (
@@ -33,6 +39,15 @@ export default function SingleView({data}) {
         <div class="gray db pv2">&hearts;<span>{product.likes}</span></div>
       </div>
     </article>
+    <div className="pa3">
+      <h1>{product.name}</h1>
+      <p>{product.description}</p>
+      <p><strong>Price:</strong> ${product.price}</p>
+      <p><strong>Tags:</strong> {product.tags.join(", ")}</p>
+    </div>
+  );
+};
 
   )
 }
+export default SingleView;

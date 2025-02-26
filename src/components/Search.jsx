@@ -1,4 +1,4 @@
-import React from 'react'
+mport React from 'react'
 
 export default function Search({handleSearch}) {
 
@@ -18,6 +18,7 @@ export default function Search({handleSearch}) {
     handleSearch(search.toLowerCase())
   }
 
+const Search = ({ handleSearch }) => {
   return (
     <form class="pt4 pb4 pl2 black-80" onSubmit={handleSubmit}>
       <fieldset class="cf bn ma0 pa0">
@@ -30,3 +31,15 @@ export default function Search({handleSearch}) {
     </form>
   )
 }
+    <div className="pa3">
+      <input
+        type="text"
+        placeholder="Search by tags..."
+        className="pa2 input-reset ba bg-white w-100"
+        onChange={(e) => handleSearch(e.target.value)}
+      />
+    </div>
+  );
+};
+
+export default Search;
