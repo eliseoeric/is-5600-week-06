@@ -12,7 +12,6 @@ const Header = () => {
         <a className="link dim dark-gray f6 f5-ns dib" href="/contact" title="/contact">Contact</a>
       </div>
     </nav>
-
   );
 }
 
