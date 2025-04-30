@@ -23,5 +23,4 @@ const Card = ({description, alt_description, id, user, urls, likes}) => {
     </div>
   )
 }
-
 export default Card;
