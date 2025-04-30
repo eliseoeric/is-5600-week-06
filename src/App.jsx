@@ -1,9 +1,13 @@
+import Header from './components/Header';
+
 import productData from './data/full-products';
+import CardList from './components/CardList';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello There.</h1>
+      <Header />
+      <CardList data={productData} />
     </div>
   );
 }
