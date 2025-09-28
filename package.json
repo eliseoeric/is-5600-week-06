@@ -21,6 +21,7 @@
     "vitest": "^0.34.6"
   },
   "scripts": {
+    "dev": "vite",
     "start": "BROWSER=none WDS_SOCKET_PORT=0 vite --port 3000",
     "build": "vite build",
     "preview": "vite preview",
