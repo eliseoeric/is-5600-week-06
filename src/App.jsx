@@ -9,6 +9,6 @@ function App() {
       <CardList data={productData} />
     </div>
   );
-} 
+}
 
 export default App;
