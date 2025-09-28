@@ -1,20 +1,36 @@
-import productData from './data/full-products';
-import Header from './components/Header';
-import CardList from './components/CardList';
-import { Route, Routes} from 'react-router-dom';
-import SingleView from './components/SingleView';
+import React, { useState } from "react";
+import CardList from "./components/CardList";
+import ProductDetail from "./components/ProductDetail";
+import Search from "./components/Search";
+import productsData from "./data/products";
 
-function App() {
+const App = () => {
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // filter products by search term (tags or name)
+  const filteredProducts = productsData.filter((p) =>
+    p.tags.join(" ").toLowerCase().includes(searchTerm.toLowerCase()) ||
+    p.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="App">
-      <h1>Hello There.</h1>
-      <Header />
-       <Routes>
-          <Route path="/" element={<CardList data={productData} />} />
-          <Route path="/product/:id" element={<SingleView data={productData} />} />
-        </Routes>
+    <div className="app">
+      <h1>Product Store</h1>
+
+      {selectedProduct ? (
+        <ProductDetail
+          product={selectedProduct}
+          onBack={() => setSelectedProduct(null)}
+        />
+      ) : (
+        <>
+          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <CardList data={filteredProducts} onSelect={setSelectedProduct} />
+        </>
+      )}
     </div>
   );
-}
+};
 
 export default App;
