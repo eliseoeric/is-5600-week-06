@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 const Card = ({description, alt_description, id, user, urls, likes}) => {
-
   const style = {
     backgroundImage: `url(${urls.small})`
   }
-  
   return (
     <div className="fl w-50 w-25-m w-20-l pa2">
       <Link to={`/product/${id}`} className="db link dim tc"> 
@@ -23,5 +20,4 @@ const Card = ({description, alt_description, id, user, urls, likes}) => {
     </div>
   )
 }
-
 export default Card;
