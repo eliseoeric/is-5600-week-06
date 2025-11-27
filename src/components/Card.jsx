@@ -1,27 +1,26 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({description, alt_description, id, user, urls, likes}) => {
+const Card = ({ id, description, urls }) => {
+  const placeholder = "https://placehold.co/300x300?text=Product";
+  const image = urls?.regular || placeholder;
 
-  const style = {
-    backgroundImage: `url(${urls.small})`
-  }
-  
   return (
-    <div className="fl w-50 w-25-m w-20-l pa2">
-      <Link to={`/product/${id}`} className="db link dim tc"> 
-        <div style={style} alt="" className="w-100 db outline black-10 h4 cover"></div>
-        <dl className="mt2 f6 lh-copy">
-          <dt className="clip">Title</dt>
-          <dd className="ml0 black truncate w-100">{description ?? alt_description}</dd>
-          <dt className="clip">Artist</dt>
-          <dd className="ml0 gray truncate w-100">{user.first_name} {user.last_name}</dd>
-          <dt className="clip">Likes</dt>
-          <dd className="ml0 gray truncate w-100">{likes} Likes</dd>
-        </dl>
-      </Link>
-    </div>
-  )
-}
+    <Link to={`/product/${id}`} className="link black">
+      <div className="fl w-25 pa2 tc">
+        <img
+          src={image}
+          alt={description}
+          className="w-100 br2"
+          onError={(e) => (e.target.src = placeholder)}
+        />
+
+        <h2 className="f5 mt2">{description || "No description"}</h2>
+
+        {/* Fake price (your dataset has none) */}
+        <p className="gray">${Math.floor(Math.random() * 50) + 10}</p>
+      </div>
+    </Link>
+  );
+};
 
 export default Card;

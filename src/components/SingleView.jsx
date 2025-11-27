@@ -1,38 +1,40 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
-export default function SingleView({data}) {
-  // get the id from the url using useParams
+const SingleView = ({ data }) => {
   const { id } = useParams();
-  
-  // get the product from the data using the id
-  const product = data.find(product => product.id === id);
 
-  const { user } = product;
+  const product = data.find((p) => p.id === id);
 
-  const title = product.description ?? product.alt_description;
-  const style = {
-    backgroundImage: `url(${product.urls["regular"]})`
-  }
+  const placeholder = "https://placehold.co/400x400?text=Product";
+  const image = product?.urls?.regular || placeholder;
+
+  if (!product) return <p className="pa4">Product Not Found</p>;
 
   return (
-    <article class="bg-white center mw7 ba b--black-10 mv4">
-      <div class="pv2 ph3">
-        <div class="flex items-center">
-          <img src={user.profile_image["medium"]} class="br-100 h3 w3 dib" alt={user.instagram_username} />
-          <h1 class="ml3 f4">{user.first_name} {user.last_name}</h1>
-        </div>
-      </div>
-      <div class="aspect-ratio aspect-ratio--4x3">
-        <div class="aspect-ratio--object cover" style={style}></div>
-      </div>
-      <div class="pa3 flex justify-between">
-        <div class="mw6">
-          <h1 class="f6 ttu tracked">Product ID: {id}</h1>
-          <a href={`/products/${id}`} class="link dim lh-title">{title}</a>
-        </div>
-        <div class="gray db pv2">&hearts;<span>{product.likes}</span></div>
-      </div>
-    </article>
+    <div className="pa4">
+      <img
+        src={image}
+        alt={product.description}
+        className="w-30 br2"
+        onError={(e) => (e.target.src = placeholder)}
+      />
 
-  )
-}
+      <h1 className="f2 mt3">{product.description || "No description"}</h1>
+
+      <p className="f3">
+        Price: ${Math.floor(Math.random() * 50) + 10}
+      </p>
+
+      <p className="lh-copy mt3">
+        Size: {product.width} × {product.height} pixels
+      </p>
+
+      <div className="mt3">
+        <h3>Tags:</h3>
+        <p>No tags available for this dataset</p>
+      </div>
+    </div>
+  );
+};
+
+export default SingleView;
