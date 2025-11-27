@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "Buy groceries",
+    "description": "Milk, eggs, bread",
+    "tags": ["home", "errand"],
+    "dueDate": "2025-12-01",
+    "completed": false
+  },
+  {
+    "id": 2,
+    "title": "Finish lab report",
+    "description": "Complete React lab steps and submit",
+    "tags": ["school", "react"],
+    "dueDate": "2025-12-03",
+    "completed": false
+  },
+  {
+    "id": 3,
+    "title": "Workout",
+    "description": "30 min cardio",
+    "tags": ["health"],
+    "dueDate": "2025-12-02",
+    "completed": true
+  }
+]
+
