@@ -1,38 +1,59 @@
-import { useParams } from 'react-router-dom';
+import React from "react";
+import { useParams, Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default function SingleView({data}) {
-  // get the id from the url using useParams
+export default function SingleView({ data }) {
   const { id } = useParams();
-  
-  // get the product from the data using the id
-  const product = data.find(product => product.id === id);
+  if (!data) return <p>Loading...</p>;
 
-  const { user } = product;
+  const product = data.find((p) => String(p.id) === String(id));
 
-  const title = product.description ?? product.alt_description;
-  const style = {
-    backgroundImage: `url(${product.urls["regular"]})`
+  if (!product) {
+    return <h2>Product not found</h2>;
   }
 
-  return (
-    <article class="bg-white center mw7 ba b--black-10 mv4">
-      <div class="pv2 ph3">
-        <div class="flex items-center">
-          <img src={user.profile_image["medium"]} class="br-100 h3 w3 dib" alt={user.instagram_username} />
-          <h1 class="ml3 f4">{user.first_name} {user.last_name}</h1>
-        </div>
-      </div>
-      <div class="aspect-ratio aspect-ratio--4x3">
-        <div class="aspect-ratio--object cover" style={style}></div>
-      </div>
-      <div class="pa3 flex justify-between">
-        <div class="mw6">
-          <h1 class="f6 ttu tracked">Product ID: {id}</h1>
-          <a href={`/products/${id}`} class="link dim lh-title">{title}</a>
-        </div>
-        <div class="gray db pv2">&hearts;<span>{product.likes}</span></div>
-      </div>
-    </article>
+  const { user, urls, description, alt_description, likes } = product;
+  const title = description ?? alt_description;
+  const style = {
+    backgroundImage: `url(${urls["regular"]})`,
+  };
 
-  )
+  return (
+    <article className="bg-white center mw7 ba b--black-10 mv4">
+      <div className="pv2 ph3">
+        <div className="flex items-center">
+          <img
+            src={user.profile_image.medium}
+            className="br-100 h3 w3 dib"
+            alt={user.instagram_username}
+          />
+          <h1 className="ml3 f4">
+            {user.first_name} {user.last_name}
+          </h1>
+        </div>
+      </div>
+      <div className="aspect-ratio aspect-ratio--4x3">
+        <div
+          className="aspect-ratio--object cover"
+          style={style}
+        ></div>
+      </div>
+      <div className="pa3 flex justify-between">
+        <div className="mw6">
+          <h1 className="f6 ttu tracked">Product ID: {id}</h1>
+          <span className="link dim lh-title">
+            {title}
+          </span>
+        </div>
+        <div className="gray db pv2">&hearts; {likes}</div>
+      </div>
+      <Link to="/">
+        <button className="ma3 pa2">Back to list</button>
+      </Link>
+    </article>
+  );
 }
+
+SingleView.propTypes = {
+  data: PropTypes.array.isRequired,
+};
