@@ -1,11 +1,16 @@
-import productData from './data/full-products';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import ProductList from "./ProductList";
+import ProductDetail from "./ProductDetail";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <h1>Hello There.</h1>
+    <div className="pa3">
+      <Routes>
+        <Route path="/" element={<ProductList />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
+      </Routes>
     </div>
   );
 }
 
-export default App;
