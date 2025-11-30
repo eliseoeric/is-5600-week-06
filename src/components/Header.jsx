@@ -1,19 +1,14 @@
-import React from 'react';
+import { Link } from "react-router-dom";
 
-const Header = () => {
+export default function Header() {
   return (
-    <nav className="dt w-100 border-box pa3 ph5-ns">
-      <a className="dtc v-mid mid-gray link dim w-25" href="/" title="Home">
-        <img src="https://img.logoipsum.com/280.svg" className="dib w2 h2 br-100" alt="Site Name" />
-      </a>
-      <div className="dtc v-mid w-75 tr">
-        <a className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="/" title="Products">Products</a>
-        <a className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="/cart" title="Cart">Cart</a>
-        <a className="link dim dark-gray f6 f5-ns dib" href="/contact" title="/contact">Contact</a>
-      </div>
-    </nav>
-
+    <header className="pa3 flex items-center justify-between">
+      <div className="b">Fullstack Prints</div>
+      <nav className="f6">
+        <Link to="/" className="link dim mr3">Products</Link>
+        <Link to="/cart" className="link dim mr3">Cart</Link>
+        <Link to="/contact" className="link dim">Contact</Link>
+      </nav>
+    </header>
   );
 }
-
-export default Header;
