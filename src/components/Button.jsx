@@ -1,9 +1,14 @@
-import React from 'react'
-
-export default function Button({text, handleClick}) {
+// Button.jsx
+const Button = ({ text, handleClick, disabled }) => {
   return (
-    <a href="#" className="f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4" onClick={handleClick}>
-      <span className="pl1">{text}</span>
-    </a>
-  )
-}
+    <button
+      className="pa2 ma2 ba br2"
+      onClick={handleClick}
+      disabled={disabled}
+    >
+      {text}
+    </button>
+  );
+};
+
+export default Button;
