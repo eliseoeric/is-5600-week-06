@@ -1,27 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({description, alt_description, id, user, urls, likes}) => {
-
-  const style = {
-    backgroundImage: `url(${urls.small})`
-  }
-  
+const Card = ({ id, title, image, description, tags }) => {
   return (
-    <div className="fl w-50 w-25-m w-20-l pa2">
-      <Link to={`/product/${id}`} className="db link dim tc"> 
-        <div style={style} alt="" className="w-100 db outline black-10 h4 cover"></div>
-        <dl className="mt2 f6 lh-copy">
-          <dt className="clip">Title</dt>
-          <dd className="ml0 black truncate w-100">{description ?? alt_description}</dd>
-          <dt className="clip">Artist</dt>
-          <dd className="ml0 gray truncate w-100">{user.first_name} {user.last_name}</dd>
-          <dt className="clip">Likes</dt>
-          <dd className="ml0 gray truncate w-100">{likes} Likes</dd>
-        </dl>
-      </Link>
-    </div>
-  )
-}
+    <Link 
+      to={`/product/${id}`} 
+      className="no-underline black"
+    >
+      <article className="mw5 bg-white br3 pa3 mv3 ba b--black-10 shadow-4 pointer">
+        
+        <div className="tc">
+          <img 
+            src={image} 
+            alt={title} 
+            className="br3 w-100 h4 object-cover"
+          />
+        </div>
+
+        <div className="mt2">
+          <h2 className="f5 mb2">{title}</h2>
+
+          <div className="mb2">
+            {tags.map(tag => (
+              <span 
+                key={tag.id}
+                className="ba br2 pa1 mr2"
+              >
+                {tag.title}
+              </span>
+            ))}
+          </div>
+
+          <p className="f6 gray">
+            {description.slice(0, 60)}…
+          </p>
+        </div>
+
+      </article>
+    </Link>
+  );
+};
 
 export default Card;
