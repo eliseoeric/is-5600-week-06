@@ -1,11 +1,75 @@
+@@ -1,11 +1,20 @@
 import productData from './data/full-products';
+import { Route, Routes} from 'react-router-dom';
+import Header from './components/Header';
+import CardList from './components/CardList';
+import SingleView from './components/SingleView';
 
 function App() {
   return (
     <div className="App">
       <h1>Hello There.</h1>
+       <Header />
+       <Routes>
+          <Route path="/" element={<CardList data={productData} />} />
+          <Route path="/product/:id" element={<SingleView data={productData} />} />
+        </Routes>
+
     </div>
   );
+  )
 }
 
 export default App;
+ 46 changes: 44 additions & 2 deletions46  
+src/components/CardList.jsx
+Viewed
+Original file line number	Diff line number	Diff line change
+@@ -1,5 +1,47 @@
+const CardList = () => {
+  return ();
+import Card from './Card'
+import Button from './Button';
+import Search from './Search';
+import React, { useState, useEffect } from "react";
+
+const CardList = ({data}) => {
+
+  const limit = 10;
+const defaultDataset = data.slice(0, limit);
+const [offset, setOffset] = useState(0);
+const [products, setProducts] = useState(defaultDataset);
+
+useEffect(() => {
+  setProducts(data.slice(offset, offset + limit));
+}, [offset, limit, data]);
+
+const filterTags = (tagQuery) => {
+  const filtered = data.filter(product => {
+    if (!tagQuery) {
+      return product
+    }
+
+    return product.tags.find(({title}) => title === tagQuery)
+  })
+
+  setOffset(0)
+  setProducts(filtered)
+}
+
+  return (
+    <div className="cf pa2">
+      <Search handleSearch={filterTags}/>
+      <div className="mt2 mb2">
+        {products && products.map((product) => (
+            <Card key={product.id} {...product} />
+        ))}
+      </div>
+
+      <div className="flex items-center justify-center pa4">   
+        <Button text="Previous" handleClick={() => setoffset(offset - limit)} />
+        <Button text="Next" handleClick={() => setoffset(offset + limit)} />
+      </div>
+    </div>
+  )
+}
