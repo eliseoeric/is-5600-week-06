@@ -7,3 +7,19 @@ export default function Button({text, handleClick}) {
     </a>
   )
 }
+// src/components/Button.jsx
+import React from "react";
+
+export default function Button({ text, handleClick, disabled = false }) {
+  return (
+    <button
+      onClick={handleClick}
+      disabled={disabled}
+      className={`pa2 ba br2 ${disabled ? "o-50" : "pointer"} mr2`}
+      aria-disabled={disabled}
+    >
+      {text}
+    </button>
+  );
+}
+

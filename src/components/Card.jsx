@@ -25,3 +25,25 @@ const Card = ({description, alt_description, id, user, urls, likes}) => {
 }
 
 export default Card;
+// src/components/Card.jsx
+import React from "react";
+import { Link } from "react-router-dom";
+
+export default function Card({ id, title, description, price, tags = [] }) {
+  return (
+    <article className="ba b--black-10 pa3 mb3" style={{ maxWidth: 420 }}>
+      <Link to={`/product/${id}`} style={{ textDecoration: "none", color: "inherit" }}>
+        <h3 className="mv0">{title}</h3>
+        <p className="mv1 gray">{description?.slice(0, 120)}{description && description.length > 120 ? "..." : ""}</p>
+        <div className="mv1">
+          <strong>${price?.toFixed ? price.toFixed(2) : price}</strong>
+        </div>
+        <div className="mv1">
+          {tags.map((t, i) => (
+            <span key={i} className="mr2 f7 gray">#{t}</span>
+          ))}
+        </div>
+      </Link>
+    </article>
+  );
+}

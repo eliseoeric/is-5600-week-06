@@ -30,3 +30,27 @@ export default function Search({handleSearch}) {
     </form>
   )
 }
+// src/components/Search.jsx
+import React from "react";
+
+export default function Search({ handleSearch }) {
+  // local change handler passes trimmed value up
+  const onChange = (e) => {
+    const val = e.target.value;
+    // We pass the raw string; CardList will normalize/trim/lowercase
+    handleSearch(val);
+  };
+
+  return (
+    <div className="mb2">
+      <input
+        type="search"
+        placeholder="Search by tag (e.g. 'red', 'sale')"
+        className="input-reset ba b--black-20 pa2 mr2"
+        onChange={onChange}
+        aria-label="Search by tag"
+      />
+    </div>
+  );
+}
+
