@@ -7,3 +7,20 @@ export default function Button({text, handleClick}) {
     </a>
   )
 }
+// src/components/Button.jsx
+import React from 'react';
+
+const Button = ({ text, handleClick, disabled }) => {
+  return (
+    <button
+      onClick={handleClick}
+      disabled={disabled}
+      className="pa2 br2 bb0 b--black-20 bg-white"
+      style={{ opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'pointer' }}
+    >
+      {text}
+    </button>
+  );
+};
+
+export default Button;
