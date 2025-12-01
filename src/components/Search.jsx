@@ -30,3 +30,20 @@ export default function Search({handleSearch}) {
     </form>
   )
 }
+// src/components/Search.jsx
+import React from 'react';
+
+const Search = ({ handleSearch }) => {
+  return (
+    <div className="tc">
+      <input
+        type="text"
+        placeholder="Search by tag..."
+        onChange={(e) => handleSearch(e.target.value)}
+        className="pa2 w-50"
+      />
+    </div>
+  );
+};
+
+export default Search;
