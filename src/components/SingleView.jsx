@@ -36,3 +36,36 @@ export default function SingleView({data}) {
 
   )
 }
+// src/components/SingleView.jsx
+import React from "react";
+import { useParams, Link } from "react-router-dom";
+
+export default function SingleView({ data = [] }) {
+  const { id } = useParams();
+  // product ids in data might be numbers or strings — normalize
+  const product = data.find((p) => String(p.id) === String(id));
+
+  if (!product) {
+    return (
+      <div>
+        <p>Product not found.</p>
+        <Link to="/">← Back to products</Link>
+      </div>
+    );
+  }
+
+  const { title, description, price, tags = [] } = product;
+
+  return (
+    <div className="pa3">
+      <Link to="/">← Back to products</Link>
+      <h2 className="mt3 mb1">{title}</h2>
+      <p className="mb2">{description}</p>
+      <p className="mb2"><strong>Price:</strong> ${price?.toFixed ? price.toFixed(2) : price}</p>
+      <div className="mb2">
+        <strong>Tags:</strong> {tags.map((t, i) => <span key={i} className="mr2">#{t}</span>)}
+      </div>
+      {/* Add more product details as required */}
+    </div>
+  );
+}
