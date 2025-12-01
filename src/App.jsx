@@ -1,10 +1,15 @@
-import productData from './data/full-products';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CardList from "./components/CardList";
+import SingleView from "./components/SingleView";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello There.</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<CardList />} />
+        <Route path="/product/:id" element={<SingleView />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
