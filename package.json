@@ -15,16 +15,13 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.1.1",
-    "jsdom": "^22.1.0",
-    "vite": "^4.5.5",
-    "vitest": "^0.34.6"
+    "jsdom": "^22.1.0"
   },
   "scripts": {
-    "start": "BROWSER=none WDS_SOCKET_PORT=0 vite --port 3000",
-    "build": "vite build",
-    "preview": "vite preview",
-    "test": "vitest"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -48,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.3"
   }
 }
