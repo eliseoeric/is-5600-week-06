@@ -1,8 +1,18 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import productData from './data/full-products';
+import { Route, Routes} from 'react-router-dom';
+import Header from './components/Header';
+import CardList from './components/CardList';
+import SingleView from './components/SingleView';
+function App() {
+  return (
+    <div className="App">
+      <Header />
+      <Routes>
+      <Route path="/" element={<CardList data={productData} />} />
+      <Route path="/product/:id" element={<SingleView data={productData} />} />
+      </Routes>
+    </div>
+  );
+}
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+export default App;
