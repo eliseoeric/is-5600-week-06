@@ -1,27 +1,30 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({description, alt_description, id, user, urls, likes}) => {
+function Card(props) {
+  const { product, index } = props;
 
-  const style = {
-    backgroundImage: `url(${urls.small})`
-  }
-  
   return (
-    <div className="fl w-50 w-25-m w-20-l pa2">
-      <Link to={`/product/${id}`} className="db link dim tc"> 
-        <div style={style} alt="" className="w-100 db outline black-10 h4 cover"></div>
-        <dl className="mt2 f6 lh-copy">
-          <dt className="clip">Title</dt>
-          <dd className="ml0 black truncate w-100">{description ?? alt_description}</dd>
-          <dt className="clip">Artist</dt>
-          <dd className="ml0 gray truncate w-100">{user.first_name} {user.last_name}</dd>
-          <dt className="clip">Likes</dt>
-          <dd className="ml0 gray truncate w-100">{likes} Likes</dd>
-        </dl>
-      </Link>
-    </div>
-  )
+    <Link
+      to={`/product/${index + 1}`}
+      style={{ textDecoration: "none", color: "black" }}
+    >
+      <div>
+        <img
+          src={product.urls.small}
+          alt="product"
+          width="250"
+        />
+
+        <h3>
+          {product.description || product.alt_description}
+        </h3>
+
+        <p>{product.user.name}</p>
+
+        <p>{product.likes} Likes</p>
+      </div>
+    </Link>
+  );
 }
 
 export default Card;
