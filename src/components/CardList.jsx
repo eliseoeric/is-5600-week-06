@@ -38,7 +38,7 @@ const filterTags = (searchTerm) => {
       </div>
       <div className="flex items-center justify-center pa4">
         <Button text="Previous" handleClick={() => handlePage(-10)} />
-<Button text="Next" handleClick={() => handlePage(10)} disabled={offset + limit >= data.length} />
+        <Button text="Next" handleClick={() => handlePage(10)} disabled={offset + limit >= data.length} />
       </div>
     </div>
   );
