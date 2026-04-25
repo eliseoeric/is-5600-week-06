@@ -1,19 +1,56 @@
-import React from 'react';
+import React from "react";
 
 const Header = () => {
   return (
-    <nav className="dt w-100 border-box pa3 ph5-ns">
-      <a className="dtc v-mid mid-gray link dim w-25" href="/" title="Home">
-        <img src="https://img.logoipsum.com/280.svg" className="dib w2 h2 br-100" alt="Site Name" />
+    <nav className="dt w-100 border-box pa3 ph5-ns bg-white shadow-2">
+
+      {/* LEFT: Logo + Site Name */}
+      <a
+        className="dtc v-mid mid-gray link dim w-25"
+        href="/"
+        title="Home"
+      >
+        <div className="flex items-center">
+          <img
+            src="https://img.logoipsum.com/280.svg"
+            className="dib w2 h2 br-100"
+            alt="Site Logo"
+          />
+
+          <span className="ml2 f4 fw6 black">
+            SName
+          </span>
+        </div>
       </a>
+
+      {/* RIGHT NAV */}
       <div className="dtc v-mid w-75 tr">
-        <a className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="/" title="Products">Products</a>
-        <a className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns" href="/cart" title="Cart">Cart</a>
-        <a className="link dim dark-gray f6 f5-ns dib" href="/contact" title="/contact">Contact</a>
+        <a
+          className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns"
+          href="/"
+          title="Products"
+        >
+          Products
+        </a>
+
+        <a
+          className="link dim dark-gray f6 f5-ns dib mr3 mr4-ns"
+          href="/cart"
+          title="Cart"
+        >
+          Cart
+        </a>
+
+        <a
+          className="link dim dark-gray f6 f5-ns dib"
+          href="/contact"
+          title="Contact"
+        >
+          Contact
+        </a>
       </div>
     </nav>
-
   );
-}
+};
 
 export default Header;
