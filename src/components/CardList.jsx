@@ -45,8 +45,8 @@ return (
     </div>
 
     <div className="flex items-center justify-center pa4">
-      <Button text="Previous" handleClick={handlePrevious} />
-      <Button text="Next" handleClick={handleNext} />
+      <Button text="Previous" handleClick={handlePrevious} disabled={offset === 0} />
+      <Button text="Next" handleClick={handleNext} disabled={offset + limit >= data.length} />
     </div>
 
   </div>
