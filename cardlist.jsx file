@@ -1,0 +1,52 @@
+import Card from "./Card";
+import Button from "./Button";
+import React, {useState, useEffect} from "react";
+import Search from "./Search";
+
+const CardList = ({data}) => {
+const limit = 10;
+const [filteredData, setFilteredData] = useState(data);
+const defaultDataset = data.slice(0, limit);
+const [offset, setOffset] = useState(0);
+const [products, setProducts] = useState(defaultDataset);
+
+const handlePageChange = (direction) => {
+  if (direction === "next") {
+    setOffset((prev) => prev + limit);
+  } else {
+    setOffset((prev) => Math.max(prev - limit, 0));
+  }
+};
+
+useEffect(() => {
+  // set the products state variable to the next 10 products
+  setProducts(filteredData.slice(offset, offset + limit));
+}, [offset, limit, filteredData]);
+
+const filterTags = (searchTerm) => {
+  const filtered = data.filter((product) =>
+    product.tags.some((tag) =>
+      tag.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  );
+
+  setFilteredData(filtered);
+  setOffset(0); // reset pagination
+};
+
+  return (
+    <div className="cf pa2">
+      <div className="mt2 mb2">
+        {products.map((product) => (
+        <Card key={product.id} {...product} />
+      ))}
+      </div>
+      <div className="flex items-center justify-center pa4">   
+        <Button text="Previous" handleClick={() => handlePageChange("prev")}/>
+        <Button text="Next" handleClick={() => handlePageChange("next")}/>
+      </div>
+    </div>
+  )
+}
+
+export default CardList;
