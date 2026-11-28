@@ -1,27 +1,30 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const Card = ({description, alt_description, id, user, urls, likes}) => {
+export default function Card(product) {
+  const title =
+    product.description ?? product.alt_description ?? 'Untitled print';
 
-  const style = {
-    backgroundImage: `url(${urls.small})`
-  }
-  
   return (
-    <div className="fl w-50 w-25-m w-20-l pa2">
-      <Link to={`/product/${id}`} className="db link dim tc"> 
-        <div style={style} alt="" className="w-100 db outline black-10 h4 cover"></div>
-        <dl className="mt2 f6 lh-copy">
-          <dt className="clip">Title</dt>
-          <dd className="ml0 black truncate w-100">{description ?? alt_description}</dd>
-          <dt className="clip">Artist</dt>
-          <dd className="ml0 gray truncate w-100">{user.first_name} {user.last_name}</dd>
-          <dt className="clip">Likes</dt>
-          <dd className="ml0 gray truncate w-100">{likes} Likes</dd>
-        </dl>
+    <article className="fl w-100 w-50-m w-third-l pa2">
+      <Link
+        to={`/product/${product.id}`}
+        className="db link near-black ba b--black-10 bg-white"
+      >
+        <img
+          src={product.urls.small}
+          alt={title}
+          loading="lazy"
+          className="db w-100"
+          style={{ height: '240px', objectFit: 'cover' }}
+        />
+        <div className="pa3">
+          <h2 className="f5 mt0">{title}</h2>
+          <p className="f6 gray">
+            By {product.user.name || product.user.first_name}
+          </p>
+          <p className="f6 mb0">♥ {product.likes}</p>
+        </div>
       </Link>
-    </div>
-  )
+    </article>
+  );
 }
-
-export default Card;
